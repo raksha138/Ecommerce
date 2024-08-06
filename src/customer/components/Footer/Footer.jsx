@@ -43,7 +43,7 @@ const Footer = () => {
 
                 <Grid item xs={12} sm={6} md={3}>
 
-                    <Typography className='pb-5' variant='h6'>Solution</Typography>
+                    <Typography className='pb-5' variant='h6'>Solutions</Typography>
                     <div>
                         <Button className='pb-5' variant='h6' gutterBottom>Marketing</Button>
                     </div>

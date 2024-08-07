@@ -452,6 +452,13 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
+import { deepPurple } from "@mui/material/colors";
+import { Avatar, Button, Menu, MenuItem } from "@mui/material";
+
+
+
+
+
 
 
 const navigation = {
@@ -462,13 +469,13 @@ const navigation = {
       featured: [
         {
           name: 'New Arrivals',
-          href: '#',
+          href: '/',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
           imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
         },
         {
           name: 'Basic Tees',
-          href: '#',
+          href: '/',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
           imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
         },
@@ -478,38 +485,39 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Dresses', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Denim', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Tops', id:"top", href: `{women/clothing/tops}` },
+            { name: 'Dresses', id:"women_dress", href: '#' },
+            { name: 'Women Jeans', id: 'women_jeans' },
+            { name: 'Lengha Choli', id: 'lengha_choli' },
+            { name: 'Sweaters', id: 'sweater' },
+            { name: 'T-Shirts', id: 't-shirt' },
+            { name: 'Jackets', id: 'jacket' },
+            { name: 'Gouns', id: 'gouns' },
+            { name: 'Sarees', id: 'saree' },
+            { name: 'Kurtas', id: 'kurtas' },
           ],
         },
         {
           id: 'accessories',
           name: 'Accessories',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'Watches', id: 'watch' },
+            { name: 'Wallets', id: 'wallet' },
+            { name: 'Bags', id: 'bag' },
+            { name: 'Sunglasses', id: 'sunglasse' },
+            { name: 'Hats', id: 'hat' },
+            { name: 'Belts', id: 'belt' },
           ],
         },
         {
           id: 'brands',
           name: 'Brands',
           items: [
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Significant Other', href: '#' },
+            { name: 'Full Nelson', id: '#' },
+            { name: 'My Way', id: '#' },
+            { name: 'Re-Arranged', id: '#' },
+            { name: 'Counterfeit', id: '#' },
+            { name: 'Significant Other', id: '#' },
           ],
         },
       ],
@@ -520,13 +528,13 @@ const navigation = {
       featured: [
         {
           name: 'New Arrivals',
-          href: '#',
+          id: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
           imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
         },
         {
           name: 'Artwork Tees',
-          href: '#',
+          id: '#',
           imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
           imageAlt:
             'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
@@ -537,54 +545,68 @@ const navigation = {
           id: 'clothing',
           name: 'Clothing',
           items: [
-            { name: 'Tops', href: '#' },
-            { name: 'Pants', href: '#' },
-            { name: 'Sweaters', href: '#' },
-            { name: 'T-Shirts', href: '#' },
-            { name: 'Jackets', href: '#' },
-            { name: 'Activewear', href: '#' },
-            { name: 'Browse All', href: '#' },
+            { name: 'Mens Kurtas', id: 'mens_kurta' },
+            { name: 'Shirt', id: 'shirt' },
+            { name: 'Men Jeans', id: 'men_jeans' },
+            { name: 'Sweaters', id: '#' },
+            { name: 'T-Shirts', id: 't-shirt' },
+            { name: 'Jackets', id: '#' },
+            { name: 'Activewear', id: '#' },
+            
           ],
         },
         {
           id: 'accessories',
           name: 'Accessories',
           items: [
-            { name: 'Watches', href: '#' },
-            { name: 'Wallets', href: '#' },
-            { name: 'Bags', href: '#' },
-            { name: 'Sunglasses', href: '#' },
-            { name: 'Hats', href: '#' },
-            { name: 'Belts', href: '#' },
+            { name: 'Watches', id: '#' },
+            { name: 'Wallets', id: '#' },
+            { name: 'Bags', id: '#' },
+            { name: 'Sunglasses', id: '#' },
+            { name: 'Hats', id: '#' },
+            { name: 'Belts', id: '#' },
           ],
         },
         {
           id: 'brands',
           name: 'Brands',
           items: [
-            { name: 'Re-Arranged', href: '#' },
-            { name: 'Counterfeit', href: '#' },
-            { name: 'Full Nelson', href: '#' },
-            { name: 'My Way', href: '#' },
+            { name: 'Re-Arranged', id: '#' },
+            { name: 'Counterfeit', id: '#' },
+            { name: 'Full Nelson', id: '#' },
+            { name: 'My Way', id: '#' },
           ],
         },
       ],
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'Company', id: '/' },
+    { name: 'Stores', id: '/' },
   ],
 }
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate=useNavigate();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openUserMenu = Boolean(anchorEl);
 
-const handleCategoryClick = (category, section, item, close)=> {
+
+
+const handleCategoryClick = (category, section, item, closePopover)=> {
   navigate(`/${category.id}/${section.id}/${item.id}`);
-  close();
+  closePopover();
 };
+
+const handleUserClick = (event) => {
+  setAnchorEl(event.currentTarget);
+};
+
+const handleCloseUserMenu = () => {
+  setAnchorEl(null);
+};
+
 
   return (
     <div className="bg-white">
@@ -744,6 +766,8 @@ const handleCategoryClick = (category, section, item, close)=> {
                 <div className="flex h-full space-x-8">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
+                      {({close})=> (
+                        <>
                       <div className="relative flex">
                         <PopoverButton className="relative z-10 -mb-px flex items-center border-b-2 border-transparent pt-px text-sm font-medium text-gray-700 transition-colors duration-200 ease-out hover:text-gray-800 data-[open]:border-indigo-600 data-[open]:text-indigo-600">
                           {category.name}
@@ -792,10 +816,27 @@ const handleCategoryClick = (category, section, item, close)=> {
                                       className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                     >
                                       {section.items.map((item) => (
-                                        <li key={item.name} className="flex">
-                                          <a href={item.href} className="hover:text-gray-800">
-                                            {item.name}
-                                          </a>
+                                        <li 
+                                        key={item.name} 
+                                        className="flex"
+                                        >
+                                          {/* <a href={item.href} className="hover:text-gray-800"> */}
+
+                                            <p 
+                                            onClick={()=>
+                                              handleCategoryClick(
+                                                category,
+                                                section,
+                                                item,
+                                                close
+                                              )
+                                            }
+                                            >
+                                              {item.name}
+
+
+                                            </p>
+                                          {/* </a> */}
                                         </li>
                                       ))}
                                     </ul>
@@ -806,6 +847,8 @@ const handleCategoryClick = (category, section, item, close)=> {
                           </div>
                         </div>
                       </PopoverPanel>
+                      </>
+                      )}
                     </Popover>
                   ))}
 
@@ -830,7 +873,43 @@ const handleCategoryClick = (category, section, item, close)=> {
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                      Sign up
                   </a>
+                
+                  <Avatar
+                        className="text-white"
+                        onClick={handleUserClick}
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        // onClick={handleUserClick}
+                        sx={{
+                          bgcolor: deepPurple[500],
+                          color: "white",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {/* {auth.user?.firstName[0].toUpperCase()} */}
+                      </Avatar>
+
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={openUserMenu}
+                        onClose={handleCloseUserMenu}
+                        MenuListProps={{
+                          "aria-labelledby": "basic-button",
+                        }}
+                      >
+                        <MenuItem onClick={handleCloseUserMenu}>
+                         Profile
+                        </MenuItem>
+
+                        <MenuItem onClick={()=>navigate("/account/order")}>
+                        My Orders</MenuItem>
+                        <MenuItem >Logout</MenuItem>
+
+                      </Menu>
                 </div>
+                
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">

@@ -454,6 +454,7 @@ import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@her
 import { useNavigate } from 'react-router-dom'
 import { deepPurple } from "@mui/material/colors";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
+import AuthModal from '../Auth/AuthModal'
 
 
 
@@ -589,6 +590,8 @@ const navigation = {
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate=useNavigate();
+
+  const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
 
@@ -605,6 +608,13 @@ const handleUserClick = (event) => {
 
 const handleCloseUserMenu = () => {
   setAnchorEl(null);
+};
+
+const handleOpen=()=> {
+  setOpenAuthModal(true);
+};
+const handleClose = () => {
+  setOpenAuthModal(false);
 };
 
 
@@ -705,7 +715,7 @@ const handleCloseUserMenu = () => {
             <div className="space-y-6 border-t border-gray-200 px-4 py-6">
               <div className="flow-root">
                 <a href="#" className="-m-2 block p-2 font-medium text-gray-900">
-                  log in
+                  Sign in
                 </a>
               </div>
               <div className="flow-root">
@@ -866,14 +876,16 @@ const handleCloseUserMenu = () => {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                  {/* <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     log in
                   </a>
                   <span aria-hidden="true" className="h-6 w-px bg-gray-200" />
                   <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                      Sign up
-                  </a>
-                
+                  </a> */}
+
+                  {false ? ( 
+                   <div>
                   <Avatar
                         className="text-white"
                         onClick={handleUserClick}
@@ -908,7 +920,19 @@ const handleCloseUserMenu = () => {
                         <MenuItem >Logout</MenuItem>
 
                       </Menu>
-                </div>
+                    </div>
+                  ):(
+               
+                
+                  <Button
+                      onClick={handleOpen}
+                      className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                    >
+                      Signin
+                    </Button>
+                
+                  )}
+                    </div>
                 
 
                 <div className="hidden lg:ml-8 lg:flex">
@@ -946,6 +970,8 @@ const handleCloseUserMenu = () => {
           </div>
         </nav>
       </header>
+
+      <AuthModal handleClose={handleClose} open={openAuthModal}/>
     </div>
   )
 }

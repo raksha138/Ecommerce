@@ -435,7 +435,7 @@
 
   'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import {
   Dialog,
   DialogBackdrop,
@@ -451,10 +451,12 @@ import {
   TabPanels,
 } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { deepPurple } from "@mui/material/colors";
 import { Avatar, Button, Menu, MenuItem } from "@mui/material";
 import AuthModal from '../Auth/AuthModal'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser, logout } from '../../../State/Auth/Action'
 
 
 
@@ -594,6 +596,11 @@ export default function Navigation() {
   const [openAuthModal, setOpenAuthModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openUserMenu = Boolean(anchorEl);
+  const jwt=localStorage.getItem("jwt");
+  const {auth}=useSelector(store=>store);
+  const dispatch = useDispatch();
+  const location=useLocation();
+
 
 
 
@@ -617,6 +624,29 @@ const handleClose = () => {
   setOpenAuthModal(false);
 };
 
+
+useEffect(()=> {  
+  if(jwt) {
+      
+  dispatch(getUser(jwt))
+  }
+},[jwt, auth.jwt])
+
+useEffect(()=> {
+
+  if(auth.user){
+    handleClose();
+  }
+  if(location.pathname==='/login' || location.pathname==="/register")
+    navigate(-1)
+
+},[auth.user])
+
+
+const handleLogout=()=> {
+  dispatch(logout())
+  handleCloseUserMenu()
+}
 
   return (
     <div className="bg-white">
@@ -884,7 +914,7 @@ const handleClose = () => {
                      Sign up
                   </a> */}
 
-                  {false ? ( 
+                  {auth.user?.firstName ? ( 
                    <div>
                   <Avatar
                         className="text-white"
@@ -899,7 +929,7 @@ const handleClose = () => {
                           cursor: "pointer",
                         }}
                       >
-                        {/* {auth.user?.firstName[0].toUpperCase()} */}
+                        {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>
 
                       <Menu
@@ -917,7 +947,7 @@ const handleClose = () => {
 
                         <MenuItem onClick={()=>navigate("/account/order")}>
                         My Orders</MenuItem>
-                        <MenuItem >Logout</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
 
                       </Menu>
                     </div>
